@@ -7,50 +7,72 @@
 //
 
 #include "board.hpp"
-#include <iostream>
-#include <curses.h>
+#include <unistd.h>
 
+#define WIDTH 35
+#define HEIGHT 20
 
-#define WIDTH 100
-#define HEIGHT 100
+#define WALL '|'
+#define FLOOR '-'
+#define BLANK ' '
+#define ALIEN 'A'
+#define PLAYER 'O'
+#define MISSILE '^'
 
-#define WALL "|"
-#define FLOOR "-"
-#define BLANK " "
-#define ALIEN "A"
-#define SPACESHIP "O"
-#define MISSILE "^"
+Board::Board(): Board(WIDTH, HEIGHT) {}
 
-Board::Board() {}
+Board::Board(int width, int height): _width(width), _height(height), pos(1) {
+    initscr();
+    noecho();
+    cbreak();
+    keypad(stdscr, TRUE);
+    window = newwin(height, width, 1, 1);
+    missilePos = 17;
 
-Board::Board(int width, int height): width(width), height(height) {}
+}
+
+Board::~Board() {
+    endwin();
+}
 
 // draw the initial board
-void Board::setup() {
-    initscr();
+void Board::update() {
 
-    WINDOW *win = newwin(20,35,1,1);
-    mvwaddch(win, 10, 10, 'A');
+      while (true) {
+          // TODO: Seperate out this a bit into main.cpp
+          // this was just for trying to get it to work
+        box(window, WALL, FLOOR);
+        mvwaddch(window, 18, pos, PLAYER);
+        mvwaddch(window, missilePos, pos, BLANK);
+        missilePos -= 1;
+        mvwaddch(window, missilePos, pos, MISSILE);
+        wrefresh(window);
+        wtimeout(window, 200);
+        int c = wgetch(window);
 
-    box(win, '|', '-');
-    touchwin(win);
-    wrefresh(win);
-    getchar();
-
-    endwin();
- 
+        switch(c) { // the real value
+            case 'C':
+                if (pos + 1 >= 1 || pos + 1 <= _width)
+                mvwaddch(window, 18, pos, BLANK);
+                mvwaddch(window, missilePos, pos, BLANK);
+                pos += 1;
+                break;
+            case 'D':
+                    if (pos - 1 >= 1 || pos - 1 <= _width)
+                    mvwaddch(window, 18, pos, BLANK);
+                    mvwaddch(window, missilePos, pos, BLANK);
+                    pos -= 1;
+                break;
+            case 'A':
+                missilePos = 17;
+        }
+    }
     
-    // refresh();
-    // for (int y = 0; y <= height; y++) {
-    //     for (int x = 0; x <= width; x++) {
-    //         // draw the top
-    //         if (y == 0 && x < width) std::cout << FLOOR;
-    //         else if (y == 0 && x == width) std::cout << FLOOR << std::endl;
-    //         else if (x == 0 && y != height) std::cout << WALL;
-    //         else if (x == width && y != height) std::cout << WALL << std::endl;
-    //         else if (y == height) std::cout << FLOOR;
-    //         else std::cout << BLANK;
-    //     }
-    // }
-    // std::cout << std::endl;
+}
+
+void Board::movePlayer(int newX) {
+    if (pos + newX >= 1 || pos + newX <= _width)
+    mvwaddch(window, 18, pos, BLANK);
+    mvwaddch(window, missilePos, pos, BLANK);
+    pos += newX;
 }
