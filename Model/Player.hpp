@@ -6,18 +6,20 @@
 //  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
 //
 
-#ifndef Player_hpp
-#define Player_hpp
+#ifndef player_hpp
+#define player_hpp
 
 #include <stdio.h>
-class Player : public Entity{
+#include "entity.hpp"
+
+class player : public entity{
 private:
   int _lives;
 public:
-  Player();
-  ~Player();
+  player();
+  ~player();
   int getLives();
   void loseLife();
   void resetLives();
-}
+};
 #endif /* Player_hpp */

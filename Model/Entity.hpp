@@ -6,21 +6,21 @@
 //  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
 //
 
-#ifndef Entity_hpp
-#define Entity_hpp
+#ifndef entity_hpp
+#define entity_hpp
 
 #include <stdio.h>
-class Entity{
+class entity {
 private:
-  int* _position[2];
+  int* _position;
   int _color;
   int _velocity;
 public:
-  Entity();
-  virtual ~Entity();
+  entity();
+  virtual ~entity();
   int* getPos();
   int getColor();
   int getVel();
   void setPos(int x, int y);
-}
+};
 #endif /* Entity_hpp */
