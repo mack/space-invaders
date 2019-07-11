@@ -7,50 +7,40 @@
 //
 
 #include "board.hpp"
-#include <iostream>
-#include <curses.h>
 
 
-#define WIDTH 100
-#define HEIGHT 100
+#define WIDTH 35
+#define HEIGHT 20
 
-#define WALL "|"
-#define FLOOR "-"
-#define BLANK " "
+#define WALL '|'
+#define FLOOR '-'
+#define BLANK ' '
 #define ALIEN "A"
 #define SPACESHIP "O"
 #define MISSILE "^"
 
-Board::Board() {}
+Board::Board(): Board(WIDTH, HEIGHT) {}
 
-Board::Board(int width, int height): width(width), height(height) {}
+Board::Board(int width, int height): _width(width), _height(height), pos(1) {
+    initscr();
+    noecho();
+    keypad(stdscr, TRUE);
+    window = newwin(height, width, 1, 1);
+}
+
+Board::~Board() {
+    endwin();
+}
 
 // draw the initial board
-void Board::setup() {
-    initscr();
+void Board::update() {
+        box(window, WALL, FLOOR);
+        mvwaddch(window, 18, pos, 'O');
+        wrefresh(window);
+}
 
-    WINDOW *win = newwin(20,35,1,1);
-    mvwaddch(win, 10, 10, 'A');
-
-    box(win, '|', '-');
-    touchwin(win);
-    wrefresh(win);
-    getchar();
-
-    endwin();
- 
-    
-    // refresh();
-    // for (int y = 0; y <= height; y++) {
-    //     for (int x = 0; x <= width; x++) {
-    //         // draw the top
-    //         if (y == 0 && x < width) std::cout << FLOOR;
-    //         else if (y == 0 && x == width) std::cout << FLOOR << std::endl;
-    //         else if (x == 0 && y != height) std::cout << WALL;
-    //         else if (x == width && y != height) std::cout << WALL << std::endl;
-    //         else if (y == height) std::cout << FLOOR;
-    //         else std::cout << BLANK;
-    //     }
-    // }
-    // std::cout << std::endl;
+void Board::movePlayer(int newX) {
+    if (pos + newX >= 1 || pos + newX <= _width)
+    mvwaddch(window, 18, pos, BLANK);
+    pos += newX;
 }

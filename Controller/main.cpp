@@ -15,7 +15,18 @@
 
 int main() {
     // TODO: This stuff should probably be in the board files.
-    Board* b = new Board(10, 20);
-    b->setup();
+    Board* b = new Board();
+    while (true) {
+      b->update();
+
+      switch(getch()) { // the real value
+            case KEY_RIGHT:
+                b->movePlayer(1);
+                break;
+            case KEY_LEFT:
+                b->movePlayer(-1);
+                break;
+        }
+    }
     return 0;
 }

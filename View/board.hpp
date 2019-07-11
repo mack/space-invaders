@@ -9,16 +9,22 @@
 #ifndef board_hpp
 #define board_hpp
 
+#include <iostream>
+#include <curses.h>
+
 class Board {
 private:
-    int width;
-    int height;
+    int _width;
+    int _height;
+    WINDOW *window;
+    int pos;
 
 public:
-    int startx, starty;
     Board();
     Board(int width, int height);
-    void setup();
+    ~Board();
+    void update();
+    void movePlayer(int newX);
 };
 
 #endif /* board_hpp */
