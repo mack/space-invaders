@@ -16,11 +16,11 @@ Entity::~Entity(){
 
 }
 
-int* getPos(){ return _position; }
-int getColor(){ return _color; }
-int getVel(){ return _velocity; }
+int* Entity::getPos(){ return _position; }
+int Entity::getColor(){ return _color; }
+int Entity::getVel(){ return _velocity; }
 
-void setPos(int x, int y){
+void Entity::setPos(int x, int y){
   _position[0] = x;
   _position[1] = y;
 }

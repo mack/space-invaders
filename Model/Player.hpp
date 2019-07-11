@@ -10,5 +10,14 @@
 #define Player_hpp
 
 #include <stdio.h>
-
+class Player : public Entity{
+private:
+  int _lives;
+public:
+  Player();
+  ~Player();
+  int getLives();
+  void loseLife();
+  void resetLives();
+}
 #endif /* Player_hpp */

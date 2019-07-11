@@ -7,3 +7,25 @@
 //
 
 #include "Player.hpp"
+#define DEF_LIVES = 3
+
+Player::Player(){
+  _lives = DEF_LIVES;
+}
+
+Player::~Player(){
+
+}
+
+int Player::getLives(){
+  return _lives;
+}
+
+
+void Player::loseLife(){
+  _lives = _lives - 1;
+}
+
+void Player::resetLives(){
+  _lives = DEF_LIVES;
+}
