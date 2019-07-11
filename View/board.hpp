@@ -18,6 +18,7 @@ private:
     int _height;
     WINDOW *window;
     int pos;
+    int missilePos;
 
 public:
     Board();

@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "board.hpp"
+#include <curses.h>
 
 // This will become the "Game Engine" file...
 #define WIDTH 30
@@ -16,17 +17,20 @@
 int main() {
     // TODO: This stuff should probably be in the board files.
     Board* b = new Board();
-    while (true) {
-      b->update();
-
-      switch(getch()) { // the real value
-            case KEY_RIGHT:
-                b->movePlayer(1);
-                break;
-            case KEY_LEFT:
-                b->movePlayer(-1);
-                break;
-        }
-    }
+    b->update();
+    // while (true) {
+    //   b->update();
+    //   timeout(-1);
+    //   int c = getch();
+    //   switch(c) { // the real value
+    //         case KEY_RIGHT:
+    //             b->movePlayer(1);
+    //             break;
+    //         case KEY_LEFT:
+    //             b->movePlayer(-1);
+    //             break;
+    //     }
+    // }
     return 0;
+
 }
