@@ -17,6 +17,7 @@ private:
     int height;
 
 public:
+    int startx, starty;
     Board();
     Board(int width, int height);
     void setup();

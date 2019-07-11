@@ -6,10 +6,13 @@
 //  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
 //
 
-#include "board.h"
+#include "board.hpp"
 #include <iostream>
+#include <curses.h>
 
-#define DEFAULT_SIZE 20
+
+#define WIDTH 100
+#define HEIGHT 100
 
 #define WALL "|"
 #define FLOOR "-"
@@ -18,12 +21,29 @@
 #define SPACESHIP "O"
 #define MISSILE "^"
 
-Board::Board(): Board(DEFAULT_SIZE, DEFAULT_SIZE) {}
+Board::Board() {}
 
 Board::Board(int width, int height): width(width), height(height) {}
 
 // draw the initial board
 void Board::setup() {
+//    WINDOW *menu_win;
+//
+//    int highlight = 1;
+//    int choice = 0;
+//    int c;
+//
+//    initscr();
+//    clear();
+//    noecho();
+//    cbreak();
+//    startx = (80 - WIDTH) / 2;
+//    starty = (24 - HEIGHT) / 2;
+//
+//    menu_win = newwin(HEIGHT, WIDTH, starty, startx);
+//    keypad(menu_win, TRUE);
+//    mvprintw(5, 27, "Welcome to SPACE INVADERS.");
+//    refresh();
     for (int y = 0; y <= height; y++) {
         for (int x = 0; x <= width; x++) {
             // draw the top

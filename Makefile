@@ -1,2 +1,2 @@
 build:
-	g++ -lncurses main.cpp -o bin/main
+	g++ -lncurses Controller/main.cpp board.cpp -I ./View -std=c++11 -o main
