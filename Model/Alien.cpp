@@ -10,23 +10,27 @@
 #define DEF_VALUE 100
 #define DEF_HEALTH 100
 
-alien::alien(){
+Alien::Alien(){
   _value = DEF_VALUE;
   _health = DEF_HEALTH;
 }
 
-alien::~alien(){
+Alien::~Alien(){
 
 }
 
-int alien::getValue(){
+int Alien::getValue(){
   return _value;
 }
 
-int alien::getHealth(){
+int Alien::getHealth(){
   return _health;
 }
 
-void alien::takeDamage(int damage){
+void Alien::takeDamage(int damage){
   _health = _health - damage;
+}
+
+void Alien::update(){
+  
 }
