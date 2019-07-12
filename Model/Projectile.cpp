@@ -1,10 +1,16 @@
 #include "projectile.hpp"
 
 Projectile::Projectile(bool alignment)
+: _power(1), _friendly(alignment)
 {
-    _power = 1;
-    _friendly = alignment;
+ 
 } 
+
+Projectile::Projectile(bool alignment, int xPosition, int yPosition)
+: Entity(xPosition, yPosition), _power(1), _friendly(alignment)
+{
+
+}
 
 Projectile::~Projectile(){
 
@@ -19,7 +25,7 @@ bool Projectile::getFriendly(){
 }
 
 void Projectile::update() {
-    setPos(getPos()[0], getPos()[1] + 1);
+    setPos(getPosX(), getPosY() + 1);
 }
 
 

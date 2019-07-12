@@ -15,6 +15,13 @@ Alien::Alien(){
   _health = DEF_HEALTH;
 }
 
+Alien::Alien(int xPosition, int yPosition)
+: Entity(xPosition, yPosition)
+{
+  _value = DEF_VALUE;
+  _health = DEF_HEALTH;
+}
+
 Alien::~Alien(){
 
 }
@@ -32,5 +39,5 @@ void Alien::takeDamage(int damage){
 }
 
 void Alien::update(){
-  
+
 }

@@ -16,6 +16,13 @@ Entity::Entity(){
   _position[1] = DEF_Y_POS;
 }
 
+Entity::Entity(int xPosition, int yPosition)
+{
+  _position = new int[2];
+  _position[0] = xPosition;
+  _position[1] = yPosition;
+}
+
 Entity::~Entity(){
   delete[] _position;
 }
@@ -37,8 +44,18 @@ void Entity::setPos(int x, int y){
   _position[1] = y;
 }
 
+int Entity::getPosX()
+{
+  return _position[0];
+}
+
+int Entity::getPosY()
+{
+  return _position[1];
+}
+
 void Entity::update(){
-  
+
 }
 
 

@@ -11,6 +11,7 @@ private:
     bool _friendly;
 public:
     Projectile(bool alignment);
+    Projectile(bool alignment, int x, int y);
     ~Projectile();
     int getPower();
     bool getFriendly();

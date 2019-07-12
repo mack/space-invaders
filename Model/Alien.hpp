@@ -18,6 +18,7 @@ private:
   int _health;
 public:
   Alien();
+  Alien(int x, int y);
   ~Alien();
   int getValue();
   int getHealth();
