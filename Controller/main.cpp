@@ -35,7 +35,8 @@ int main() {
     }
 
     while (true) {
-      board->update();      
+      board->update(); 
+      board->checkCollision();     
       // Check for user input
       int c = board->getInput();
       switch(c) {

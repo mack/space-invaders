@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "*.mod": "go",
-    "new": "cpp"
+    "new": "cpp",
+    "vector": "cpp"
   }
 }

@@ -46,6 +46,21 @@ int Board::getWidth() {
 
 // MARK: - Board methods
 
+void Board::checkCollision() {
+    for (int i = 0; i < gameObjects.size(); i++) {
+        for (int j = 0; j < gameObjects.size(); j++) {
+            Entity* obj1 = gameObjects.at(i);
+            Entity* obj2 = gameObjects.at(j);
+            if ((obj1->getRepresentation() == 'A' && obj2->getRepresentation() == '^' ||
+                obj2->getRepresentation() == 'A' && obj1->getRepresentation() == '^')
+                && obj1->getPosX() == obj2->getPosX() && obj1->getPosY() == obj2->getPosY()) {
+                gameObjects.erase(gameObjects.begin() + i);
+                gameObjects.erase((gameObjects.begin() - 1) + j);
+            }
+        }
+    }
+}
+
 void Board::update() {
     // Clear the window and then re-draw
     wclear(window);

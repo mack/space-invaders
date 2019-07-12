@@ -30,6 +30,7 @@ public:
     void update();
     void addObject(Entity* object);
     int getInput();
+    void checkCollision();
 };
 
 #endif /* board_hpp */
