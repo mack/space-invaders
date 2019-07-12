@@ -12,9 +12,10 @@
 #include <stdio.h>
 class Entity {
 private:
-  int* _position;
   int _color;
   int _velocity;
+protected:
+  int* _position;
 public:
   Entity();
   virtual ~Entity();
