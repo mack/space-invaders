@@ -28,7 +28,7 @@ int main() {
 
     // Create aliens and add to board
     for (int i = 0; i < 2; i++) {
-      for (int j = 0; j < 50; j++) {
+      for (int j = 0; j < 2; j++) {
         Alien* alien = new Alien(j+21, i+1);
         board->addObject(alien);
       }

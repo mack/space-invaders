@@ -8,6 +8,7 @@
 
 #include "board.hpp"
 #include <unistd.h>
+#include <math.h>
 
 #define WIDTH 36
 #define HEIGHT 20
@@ -66,12 +67,17 @@ void Board::update() {
     wclear(window);
     box(window, WALL, FLOOR);
     // Draw all game objects in entity vector
+    int alienCount = 0;
     for (int i = 0; i < gameObjects.size(); i++) {
         Entity* obj = gameObjects.at(i);
+        if (obj->getRepresentation() == 'A') alienCount++;
         // Print game object
         mvwaddch(window, obj->getPosY(), obj->getPosX(), obj->getRepresentation());
         // Call game objects update function
         obj->update();
+    }
+    if (alienCount == 0) {
+        mvwprintw(window, floor(_height/2), floor(_width/2), "You win!!");
     }
     // Refresh the terminal
     wrefresh(window);
