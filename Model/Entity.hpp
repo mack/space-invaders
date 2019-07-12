@@ -15,8 +15,6 @@ protected:
   int* _position;
   int _color;
   int _velocity;
-protected:
-  int* _position;
 public:
   Entity();
   Entity(int x, int y);
