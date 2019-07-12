@@ -10,29 +10,29 @@
 #define DEF_X_POS 1;
 #define DEF_Y_POS 1;
 
-entity::entity(){
+Entity::Entity(){
   _position = new int[2];
   _position[0] = DEF_X_POS;
   _position[1] = DEF_Y_POS;
 }
 
-entity::~entity(){
+Entity::~Entity(){
   delete[] _position;
 }
 
-int* entity::getPos(){
+int* Entity::getPos(){
   return _position;
 }
 
-int entity::getColor(){
+int Entity::getColor(){
   return _color;
 }
 
-int entity::getVel(){
+int Entity::getVel(){
   return _velocity;
 }
 
-void entity::setPos(int x, int y){
+void Entity::setPos(int x, int y){
   _position[0] = x;
   _position[1] = y;
 }

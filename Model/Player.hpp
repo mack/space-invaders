@@ -12,12 +12,12 @@
 #include <stdio.h>
 #include "entity.hpp"
 
-class player : public entity{
+class Player : public Entity{
 private:
   int _lives;
 public:
-  player();
-  ~player();
+  Player();
+  ~Player();
   int getLives();
   void loseLife();
   void resetLives();

@@ -9,23 +9,23 @@
 #include "player.hpp"
 #define DEF_LIVES 3
 
-player::player(){
+Player::Player(){
   _lives = DEF_LIVES;
 }
 
-player::~player(){
+Player::~Player(){
 
 }
 
-int player::getLives(){
+int Player::getLives(){
   return _lives;
 }
 
 
-void player::loseLife(){
+void Player::loseLife(){
   _lives = _lives - 1;
 }
 
-void player::resetLives(){
+void Player::resetLives(){
   _lives = DEF_LIVES;
 }

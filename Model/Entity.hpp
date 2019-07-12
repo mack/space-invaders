@@ -10,17 +10,18 @@
 #define entity_hpp
 
 #include <stdio.h>
-class entity {
+class Entity {
 private:
   int* _position;
   int _color;
   int _velocity;
 public:
-  entity();
-  virtual ~entity();
+  Entity();
+  virtual ~Entity();
   int* getPos();
   int getColor();
   int getVel();
   void setPos(int x, int y);
+  virtual void update();
 };
 #endif /* Entity_hpp */
