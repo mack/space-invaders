@@ -8,15 +8,18 @@
 
 #include "Player.hpp"
 #define DEF_LIVES 3
+#define CHAR_REP 'P'
 
 Player::Player() {
   _lives = DEF_LIVES;
+  _representation = CHAR_REP;
 }
 
 Player::Player(int x, int y) {
   _lives = DEF_LIVES;
   _position[0] = x;
   _position[1] = y;
+  _representation = CHAR_REP;
 }
 
 Player::~Player(){

@@ -9,10 +9,12 @@
 #include "alien.hpp"
 #define DEF_VALUE 100
 #define DEF_HEALTH 100
+#define CHAR_REP 'A'
 
 Alien::Alien(){
   _value = DEF_VALUE;
   _health = DEF_HEALTH;
+  _representation = CHAR_REP;
 }
 
 Alien::Alien(int xPosition, int yPosition)
@@ -20,6 +22,7 @@ Alien::Alien(int xPosition, int yPosition)
 {
   _value = DEF_VALUE;
   _health = DEF_HEALTH;
+  _representation = CHAR_REP;
 }
 
 Alien::~Alien(){
