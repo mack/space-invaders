@@ -18,11 +18,14 @@ protected:
   int* _position;
 public:
   Entity();
+  Entity(int x, int y);
   virtual ~Entity();
   int* getPos();
   int getColor();
   int getVel();
   void setPos(int x, int y);
+  int getPosX();
+  int getPosY();
   virtual void update();
 };
 #endif /* Entity_hpp */
