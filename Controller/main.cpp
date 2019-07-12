@@ -8,29 +8,41 @@
 
 #include <iostream>
 #include "board.hpp"
+#include "Player.hpp"
 #include <curses.h>
+#include <math.h>
 
 // This will become the "Game Engine" file...
-#define WIDTH 30
-#define HEIGHT 10
+
+#define RIGHT_KEY 'C'
+#define LEFT_KEY 'D'
+#define UP_KEY 'A'
 
 int main() {
-    // TODO: This stuff should probably be in the board files.
     Board* b = new Board();
-    b->update();
-    // while (true) {
-    //   b->update();
-    //   timeout(-1);
-    //   int c = getch();
-    //   switch(c) { // the real value
-    //         case KEY_RIGHT:
-    //             b->movePlayer(1);
-    //             break;
-    //         case KEY_LEFT:
-    //             b->movePlayer(-1);
-    //             break;
-    //     }
-    // }
-    return 0;
+    // Create a player and add it to the board
+    Player* p = new Player(floor(b->getWidth() / 2), b->getHeight() - 1);
+    b->addObject(p);
 
+    // Create game objects and add them to the board
+
+    while (true) {
+      // Collison detection here ?
+
+      b->update();      
+      int c = b->getInput();
+      switch(c) { // the real value
+            case RIGHT_KEY:
+                // p->movePlayer(1);
+                break;
+            case LEFT_KEY:
+                // b->movePlayer(-1);
+                break;
+            case UP_KEY:
+                // Projectile p = new Projectile(p->getXPos ,b->getHeight - 1);
+                // b->addObject(p);
+                // b->movePlayer(-1);
+                break;
+        }
+    }
 }

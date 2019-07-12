@@ -11,7 +11,8 @@
 
 #include <stdio.h>
 class Entity {
-private:
+protected:
+  int* _position;
   int _color;
   int _velocity;
 protected:
