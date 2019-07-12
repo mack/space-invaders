@@ -12,15 +12,16 @@
 #include <stdio.h>
 #include "entity.hpp"
 
-class alien : public entity{
+class Alien : public Entity{
 private:
   int _value;
   int _health;
 public:
-  alien();
-  ~alien();
+  Alien();
+  ~Alien();
   int getValue();
   int getHealth();
   void takeDamage(int damage);
+  void update() override;
 };
 #endif /* Alien_hpp */
