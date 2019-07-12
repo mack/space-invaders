@@ -26,6 +26,7 @@ public:
   void setPos(int x, int y);
   int getPosX();
   int getPosY();
+  char getRepresentation();
   virtual void update();
 };
 #endif /* Entity_hpp */

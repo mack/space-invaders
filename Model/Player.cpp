@@ -8,7 +8,7 @@
 
 #include "Player.hpp"
 #define DEF_LIVES 3
-#define CHAR_REP 'P'
+#define CHAR_REP 'O'
 
 Player::Player() {
   _lives = DEF_LIVES;

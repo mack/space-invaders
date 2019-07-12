@@ -50,13 +50,14 @@ void Board::update() {
     box(window, WALL, FLOOR);
     for (int i = 0; i < gameObjects.size(); i++) {
         Entity* obj = gameObjects.at(i);
-        mvwaddch(window, obj->getPos()[1], obj->getPos()[0], PLAYER);
+        mvwaddch(window, obj->getPos()[1], obj->getPos()[0], obj->getRepresentation());
+        obj->update();
     }
     wrefresh(window);
 }
 
 int Board::getInput() {
-    wtimeout(window, 200);
+    wtimeout(window, 25);
     return wgetch(window);
 }
 

@@ -9,6 +9,7 @@
 #include <iostream>
 #include "board.hpp"
 #include "Player.hpp"
+#include "Projectile.hpp"
 #include <curses.h>
 #include <math.h>
 
@@ -19,29 +20,28 @@
 #define UP_KEY 'A'
 
 int main() {
-    Board* b = new Board();
+    Board* board = new Board(100, 40);
     // Create a player and add it to the board
-    Player* p = new Player(floor(b->getWidth() / 2), b->getHeight() - 1);
-    b->addObject(p);
-    
+    Player* player = new Player(floor(board->getWidth() / 2), board->getHeight() - 1);
+    board->addObject(player);
+
     // Create game objects and add them to the board
 
     while (true) {
       // Collison detection here ?
 
-      b->update();      
-      int c = b->getInput();
+      board->update();      
+      int c = board->getInput();
       switch(c) { // the real value
             case RIGHT_KEY:
-                // p->movePlayer(1);
+                player->moveRight();
                 break;
             case LEFT_KEY:
-                // b->movePlayer(-1);
+                player->moveLeft();
                 break;
             case UP_KEY:
-                // Projectile p = new Projectile(p->getXPos ,b->getHeight - 1);
-                // b->addObject(p);
-                // b->movePlayer(-1);
+                Projectile* p = new Projectile(true, player->getPosX(), player->getPosY() - 1);
+                board->addObject(p);
                 break;
         }
     }

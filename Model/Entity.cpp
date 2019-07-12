@@ -54,6 +54,10 @@ int Entity::getPosY()
   return _position[1];
 }
 
+char Entity::getRepresentation() { 
+  return _representation;
+}
+
 void Entity::update(){
 
 }

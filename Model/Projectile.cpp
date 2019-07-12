@@ -26,7 +26,7 @@ bool Projectile::getFriendly(){
 }
 
 void Projectile::update() {
-    setPos(getPosX(), getPosY() + 1);
+    setPos(getPosX(), getPosY() - 1);
 }
 
 
