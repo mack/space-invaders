@@ -10,6 +10,7 @@
 #include "board.hpp"
 #include "Player.hpp"
 #include "Projectile.hpp"
+#include "Alien.hpp"
 #include <curses.h>
 #include <math.h>
 
@@ -25,14 +26,19 @@ int main() {
     Player* player = new Player(floor(board->getWidth() / 2), board->getHeight() - 1);
     board->addObject(player);
 
-    // Create game objects and add them to the board
+    // Create aliens and add to board
+    for (int i = 0; i < 2; i++) {
+      for (int j = 0; j < 50; j++) {
+        Alien* alien = new Alien(j+21, i+1);
+        board->addObject(alien);
+      }
+    }
 
     while (true) {
-      // Collison detection here ?
-
       board->update();      
+      // Check for user input
       int c = board->getInput();
-      switch(c) { // the real value
+      switch(c) {
             case RIGHT_KEY:
                 player->moveRight();
                 break;

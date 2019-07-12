@@ -11,53 +11,60 @@
 
 #define WIDTH 36
 #define HEIGHT 20
+#define TIMEOUT 25
 
 #define WALL '|'
 #define FLOOR '-'
-#define BLANK ' '
-#define ALIEN 'A'
-#define PLAYER 'O'
-#define MISSILE '^'
+
+// MARK: - Constructors & Deconstructors
 
 Board::Board(): Board(WIDTH, HEIGHT) {}
 
 Board::Board(int width, int height): _width(width), _height(height) {
+    // Initial NCurses setup
     initscr();
-    noecho();
+    noecho(); // Don't echo input
     cbreak();
-    curs_set(0);
-    keypad(stdscr, TRUE);
-    window = newwin(height, width, 1, 1);
+    curs_set(0); // Hide blinking cursor
+    keypad(stdscr, TRUE); // Accept arrow keys as input
+    window = newwin(height, width, 1, 1); // Initialize new ncurses window
 }
 
 Board::~Board() {
     endwin();
 }
 
+// MARK: - Getters & Setters
+
 int Board::getHeight() {
-    // - 1 because of the border
     return _height - 1;
 }
 
 int Board::getWidth() {
-    // - 1 because of the border
     return _width - 1;
 }
 
-// draw the initial board
+// MARK: - Board methods
+
 void Board::update() {
+    // Clear the window and then re-draw
     wclear(window);
     box(window, WALL, FLOOR);
+    // Draw all game objects in entity vector
     for (int i = 0; i < gameObjects.size(); i++) {
         Entity* obj = gameObjects.at(i);
-        mvwaddch(window, obj->getPos()[1], obj->getPos()[0], obj->getRepresentation());
+        // Print game object
+        mvwaddch(window, obj->getPosY(), obj->getPosX(), obj->getRepresentation());
+        // Call game objects update function
         obj->update();
     }
+    // Refresh the terminal
     wrefresh(window);
 }
 
 int Board::getInput() {
-    wtimeout(window, 25);
+    // Timeout prevents the wgetchar() from blocking 
+    wtimeout(window, TIMEOUT);
     return wgetch(window);
 }
 
