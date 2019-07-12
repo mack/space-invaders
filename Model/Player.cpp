@@ -6,11 +6,17 @@
 //  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
 //
 
-#include "player.hpp"
+#include "Player.hpp"
 #define DEF_LIVES 3
 
-Player::Player(){
+Player::Player() {
   _lives = DEF_LIVES;
+}
+
+Player::Player(int x, int y) {
+  _lives = DEF_LIVES;
+  _position[0] = x;
+  _position[1] = y;
 }
 
 Player::~Player(){
@@ -37,7 +43,6 @@ int Player::getLives(){
 }
 
 void Player::update(){
-
 }
 
 void Player::loseLife(){

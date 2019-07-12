@@ -11,21 +11,25 @@
 
 #include <iostream>
 #include <curses.h>
+#include <vector>
+#include <Entity.hpp>
 
 class Board {
 private:
     int _width;
     int _height;
     WINDOW *window;
-    int pos;
-    int missilePos;
+    std::vector<Entity*> gameObjects;
 
 public:
     Board();
     Board(int width, int height);
     ~Board();
+    int getHeight();
+    int getWidth();
     void update();
-    void movePlayer(int newX);
+    void addObject(Entity* object);
+    int getInput();
 };
 
 #endif /* board_hpp */

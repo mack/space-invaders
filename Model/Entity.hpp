@@ -11,11 +11,10 @@
 
 #include <stdio.h>
 class Entity {
-private:
-  int _color;
-  int _velocity;
 protected:
   int* _position;
+  int _color;
+  int _velocity;
 public:
   Entity();
   Entity(int x, int y);
