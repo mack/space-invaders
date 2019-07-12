@@ -23,7 +23,7 @@ int main() {
     // Create a player and add it to the board
     Player* p = new Player(floor(b->getWidth() / 2), b->getHeight() - 1);
     b->addObject(p);
-
+    
     // Create game objects and add them to the board
 
     while (true) {

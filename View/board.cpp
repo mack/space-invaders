@@ -25,6 +25,7 @@ Board::Board(int width, int height): _width(width), _height(height) {
     initscr();
     noecho();
     cbreak();
+    curs_set(0);
     keypad(stdscr, TRUE);
     window = newwin(height, width, 1, 1);
 }
