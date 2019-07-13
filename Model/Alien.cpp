@@ -6,7 +6,7 @@
 //  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
 //
 
-#include "alien.hpp"
+#include "Alien.hpp"
 #define DEF_VALUE 100
 #define DEF_HEALTH 100
 #define CHAR_REP 'A'

@@ -52,9 +52,12 @@ void Board::checkCollision() {
         for (int j = 0; j < gameObjects.size(); j++) {
             Entity* obj1 = gameObjects.at(i);
             Entity* obj2 = gameObjects.at(j);
-            if ((obj1->getRepresentation() == 'A' && obj2->getRepresentation() == '^' ||
-                obj2->getRepresentation() == 'A' && obj1->getRepresentation() == '^')
-                && obj1->getPosX() == obj2->getPosX() && obj1->getPosY() == obj2->getPosY()) {
+
+            // Verifying Alien/Projectile collision
+            if (((obj1->getRepresentation() == 'A' && obj2->getRepresentation() == '^') ||
+                  (obj2->getRepresentation() == 'A' && obj1->getRepresentation() == '^')) &&
+                  (obj1->getPosX() == obj2->getPosX() && obj1->getPosY() == obj2->getPosY())) {
+
                 gameObjects.erase(gameObjects.begin() + i);
                 gameObjects.erase((gameObjects.begin() - 1) + j);
             }
@@ -84,7 +87,7 @@ void Board::update() {
 }
 
 int Board::getInput() {
-    // Timeout prevents the wgetchar() from blocking 
+    // Timeout prevents the wgetchar() from blocking
     wtimeout(window, TIMEOUT);
     return wgetch(window);
 }

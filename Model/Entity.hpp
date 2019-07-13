@@ -6,13 +6,16 @@
 //  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
 //
 
-#ifndef entity_hpp
-#define entity_hpp
+#ifndef Entity_hpp
+#define Entity_hpp
 
 #include <stdio.h>
 class Entity {
 protected:
+protected:
+  static int nextID;
   int* _position;
+  int _id;
   int _color;
   int _velocity;
   char _representation;
@@ -21,6 +24,7 @@ public:
   Entity(int x, int y);
   virtual ~Entity();
   int* getPos();
+  int getID();
   int getColor();
   int getVel();
   void setPos(int x, int y);

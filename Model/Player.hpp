@@ -6,12 +6,12 @@
 //  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
 //
 
-#ifndef player_hpp
-#define player_hpp
+#ifndef Player_hpp
+#define Player_hpp
 
 #include <stdio.h>
-#include "entity.hpp"
-#include "projectile.hpp"
+#include "Entity.hpp"
+#include "Projectile.hpp"
 
 class Player : public Entity{
 private:

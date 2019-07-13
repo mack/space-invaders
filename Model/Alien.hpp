@@ -6,11 +6,11 @@
 //  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
 //
 
-#ifndef alien_hpp
-#define alien_hpp
+#ifndef Alien_hpp
+#define Alien_hpp
 
 #include <stdio.h>
-#include "entity.hpp"
+#include "Entity.hpp"
 
 class Alien : public Entity{
 private:

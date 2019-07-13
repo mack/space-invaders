@@ -6,11 +6,14 @@
 //  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
 //
 
-#include "entity.hpp"
+#include "Entity.hpp"
 #define DEF_X_POS 1;
 #define DEF_Y_POS 1;
 
+int Entity::nextID = 0;
+
 Entity::Entity(){
+  _id = ++nextID;
   _position = new int[2];
   _position[0] = DEF_X_POS;
   _position[1] = DEF_Y_POS;
@@ -29,6 +32,10 @@ Entity::~Entity(){
 
 int* Entity::getPos(){
   return _position;
+}
+
+int Entity::getID(){
+  return _id;
 }
 
 int Entity::getColor(){
@@ -54,12 +61,10 @@ int Entity::getPosY()
   return _position[1];
 }
 
-char Entity::getRepresentation() { 
+char Entity::getRepresentation() {
   return _representation;
 }
 
 void Entity::update(){
 
 }
-
-

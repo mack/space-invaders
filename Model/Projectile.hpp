@@ -1,9 +1,9 @@
- 
-#ifndef projectile_hpp
-#define projectile_hpp
+
+#ifndef Projectile_hpp
+#define Projectile_hpp
 
 #include <stdio.h>
-#include "entity.hpp"
+#include "Entity.hpp"
 
 class Projectile : public Entity{
 private:
