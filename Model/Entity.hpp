@@ -1,36 +1,39 @@
 //
 //  Entity.hpp
-//  spaceinvadors
+//  Space Invaders
 //
-//  Created by Mackenzie Boudreau on 2019-07-10.
-//  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
+//  Created by Mackenzie Boudreau, Ian Page, Carter McCullum, Branden Rice on 2019-07-10.
+//  Copyright © 2019 Group 9. All rights reserved.
 //
 
 #ifndef Entity_hpp
 #define Entity_hpp
 
 #include <stdio.h>
+#include <curses.h>
+
 class Entity {
 protected:
-protected:
-  static int nextID;
-  int* _position;
-  int _id;
-  int _color;
+  float* _position;
+  int _color = COLOR_WHITE;
   int _velocity;
   char _representation;
+  bool _destroyed;
+
 public:
   Entity();
-  Entity(int x, int y);
+  Entity(float x, float y);
   virtual ~Entity();
-  int* getPos();
-  int getID();
+  float* getPos();
   int getColor();
   int getVel();
-  void setPos(int x, int y);
+  void setPos(float x, float y);
   int getPosX();
   int getPosY();
+  void destroy();
+  bool isDestroyed();
   char getRepresentation();
-  virtual void update();
+  virtual void update() = 0;
+  virtual void detectCollision(Entity& object);
 };
-#endif /* Entity_hpp */
+#endif

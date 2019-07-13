@@ -1,27 +1,24 @@
 //
 //  main.cpp
-//  spaceinvadors
+//  Space Invaders
 //
-//  Created by Mackenzie Boudreau on 2019-07-10.
-//  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
+//  Created by Mackenzie Boudreau, Ian Page, Carter McCullum, Branden Rice on 2019-07-10.
+//  Copyright © 2019 Group 9. All rights reserved.
 //
 
 #include <iostream>
-#include "board.hpp"
-#include "Player.hpp"
-#include "Projectile.hpp"
-#include "Alien.hpp"
 #include <curses.h>
 #include <math.h>
 
-// This will become the "Game Engine" file...
-
-#define RIGHT_KEY 'C'
-#define LEFT_KEY 'D'
-#define UP_KEY 'A'
+#include "Board.hpp"
+#include "Player.hpp"
+#include "Projectile.hpp"
+#include "Alien.hpp"
+#include "Constants.hpp"
 
 int main() {
     Board* board = new Board(100, 40);
+
     // Create a player and add it to the board
     Player* player = new Player(floor(board->getWidth() / 2), board->getHeight() - 1);
     board->addObject(player);
@@ -35,8 +32,14 @@ int main() {
     }
 
     while (true) {
-      board->update(); 
-      board->checkCollision();     
+      // Check if game is over
+      if (player->getLives() <= 0) {
+        board->writeMessage("Game Over.");
+      } else if (board->getObjects(ALIEN_REP).size() == 0) {
+        board->writeMessage("You win!!");
+      }
+
+      board->update();
       // Check for user input
       int c = board->getInput();
       switch(c) {

@@ -1,46 +1,64 @@
 //
 //  Alien.cpp
-//  spaceinvadors
+//  Space Invaders
 //
-//  Created by Mackenzie Boudreau on 2019-07-10.
-//  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
+//  Created by Mackenzie Boudreau, Ian Page, Carter McCullum, Branden Rice on 2019-07-10.
+//  Copyright © 2019 Group 9. All rights reserved.
 //
+
+#include<algorithm>
+#include <curses.h>
 
 #include "Alien.hpp"
+#include <Constants.hpp>
+
 #define DEF_VALUE 100
 #define DEF_HEALTH 100
-#define CHAR_REP 'A'
 
-Alien::Alien(){
+Alien::Alien() {
   _value = DEF_VALUE;
   _health = DEF_HEALTH;
-  _representation = CHAR_REP;
+  _representation = ALIEN_REP;
+  _color = COLOR_GREEN;
 }
 
 Alien::Alien(int xPosition, int yPosition)
-: Entity(xPosition, yPosition)
-{
+: Entity(xPosition, yPosition) {
   _value = DEF_VALUE;
   _health = DEF_HEALTH;
-  _representation = CHAR_REP;
+  _representation = ALIEN_REP;
+  _color = COLOR_GREEN;
 }
 
-Alien::~Alien(){
+Alien::~Alien() {}
 
-}
-
-int Alien::getValue(){
+int Alien::getValue() {
   return _value;
 }
 
-int Alien::getHealth(){
+int Alien::getHealth() {
   return _health;
 }
 
-void Alien::takeDamage(int damage){
-  _health = _health - damage;
+int Alien::takeDamage(int damage) {
+  _health = std::max(_health - damage, 0);
+  return _health;
 }
 
-void Alien::update(){
+void Alien::update() {
+  if (_health <= 33) {
+    _color = COLOR_RED;
+  } else if (_health <= 66) {
+    _color = COLOR_MAGENTA;
+  }
+  setPos(_position[0], _position[1] + 0.05);
+}
 
+void Alien::detectCollision(Entity& object) {
+  if (object.getRepresentation() == PROJECTILE_REP) {
+    if (takeDamage(34) == 0) {
+      destroy();
+    }
+    object.destroy();
+  }
 }

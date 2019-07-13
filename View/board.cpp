@@ -1,29 +1,33 @@
 //
-//  board.cpp
-//  spaceinvadors
+//  Board.cpp
+//  Space Invaders
 //
-//  Created by Mackenzie Boudreau on 2019-07-10.
-//  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
+//  Created by Mackenzie Boudreau, Ian Page, Carter McCullum, Branden Rice on 2019-07-10.
+//  Copyright © 2019 Group 9. All rights reserved.
 //
 
-#include "board.hpp"
 #include <unistd.h>
 #include <math.h>
 
-#define WIDTH 36
-#define HEIGHT 20
-#define TIMEOUT 25
-
-#define WALL '|'
-#define FLOOR '-'
+#include "Board.hpp"
+#include <Alien.hpp>
+#include <Constants.hpp>
 
 // MARK: - Constructors & Deconstructors
+Board::Board(): Board(DEFAULT_BOARD_WIDTH, DEFAULT_BOARD_HEIGHT) {}
 
-Board::Board(): Board(WIDTH, HEIGHT) {}
-
-Board::Board(int width, int height): _width(width), _height(height) {
+Board::Board(int width, int height): _width(width), _height(height), _message("") {
     // Initial NCurses setup
     initscr();
+    start_color();
+    init_color(COLOR_BLACK, 0, 0, 0);
+    init_color(COLOR_RED, 1000, 0, 0);
+    init_color(COLOR_GREEN, 0, 1000, 0);
+    init_color(COLOR_MAGENTA, 1000, 500, 0); // Using magenta as orange, since we only have 8 colors
+    init_pair(COLOR_GREEN, COLOR_GREEN, COLOR_BLACK);
+    init_pair(COLOR_WHITE, COLOR_WHITE, COLOR_BLACK);
+    init_pair(COLOR_RED, COLOR_RED, COLOR_BLACK);
+    init_pair(COLOR_MAGENTA, COLOR_MAGENTA, COLOR_BLACK);
     noecho(); // Don't echo input
     cbreak();
     curs_set(0); // Hide blinking cursor
@@ -36,7 +40,6 @@ Board::~Board() {
 }
 
 // MARK: - Getters & Setters
-
 int Board::getHeight() {
     return _height - 1;
 }
@@ -46,44 +49,56 @@ int Board::getWidth() {
 }
 
 // MARK: - Board methods
-
-void Board::checkCollision() {
-    for (int i = 0; i < gameObjects.size(); i++) {
-        for (int j = 0; j < gameObjects.size(); j++) {
-            Entity* obj1 = gameObjects.at(i);
-            Entity* obj2 = gameObjects.at(j);
-
-            // Verifying Alien/Projectile collision
-            if (((obj1->getRepresentation() == 'A' && obj2->getRepresentation() == '^') ||
-                  (obj2->getRepresentation() == 'A' && obj1->getRepresentation() == '^')) &&
-                  (obj1->getPosX() == obj2->getPosX() && obj1->getPosY() == obj2->getPosY())) {
-
-                gameObjects.erase(gameObjects.begin() + i);
-                gameObjects.erase((gameObjects.begin() - 1) + j);
-            }
-        }
-    }
-}
-
 void Board::update() {
     // Clear the window and then re-draw
     wclear(window);
     box(window, WALL, FLOOR);
+
     // Draw all game objects in entity vector
-    int alienCount = 0;
     for (int i = 0; i < gameObjects.size(); i++) {
         Entity* obj = gameObjects.at(i);
-        if (obj->getRepresentation() == 'A') alienCount++;
-        // Print game object
+        // Check for any collisions
+        for (int j = i + 1; j < gameObjects.size(); j++) {
+            Entity* obj2 = gameObjects.at(j);
+            if (obj->getPosX() == obj2->getPosX() && obj->getPosY() == obj2->getPosY()) {
+                obj->detectCollision(*obj2);
+            }
+        }
+
+        // Delete object if needed
+        if (obj->isDestroyed() || obj->getPosX() > _width || obj->getPosY() > _height || obj->getPosY() < 0 || obj->getPosX() < 0) {
+            gameObjects.erase(gameObjects.begin() + i);
+            break;
+        }
+
+        // Print game object with color
+        wattron(window, COLOR_PAIR(obj->getColor()));
         mvwaddch(window, obj->getPosY(), obj->getPosX(), obj->getRepresentation());
+        wattroff(window, COLOR_PAIR(1));
         // Call game objects update function
         obj->update();
-    }
-    if (alienCount == 0) {
-        mvwprintw(window, floor(_height/2), floor(_width/2), "You win!!");
+
+        // Write the game message if any
+        if (strlen(_message) > 0) {
+            int offset = floor(strlen(_message) / 2);
+            mvwprintw(window, floor(_height / 2), floor(_width / 2) - offset, _message);
+        }
     }
     // Refresh the terminal
     wrefresh(window);
+}
+
+void Board::writeMessage(const char* message) {
+    _message = message;
+}
+
+std::vector<Entity*> Board::getObjects(char representation) {
+    std::vector<Entity*> filtered = std::vector<Entity*>();
+    for (int i = 0; i < gameObjects.size(); i++) {
+        if (gameObjects.at(i)->getRepresentation() == representation) 
+            filtered.push_back(gameObjects.at(i));
+    }
+    return filtered;
 }
 
 int Board::getInput() {

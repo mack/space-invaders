@@ -1,70 +1,70 @@
 //
 //  Entity.cpp
-//  spaceinvadors
+//  Space Invaders
 //
-//  Created by Mackenzie Boudreau on 2019-07-10.
-//  Copyright © 2019 Mackenzie Boudreau. All rights reserved.
+//  Created by Mackenzie Boudreau, Ian Page, Carter McCullum, Branden Rice on 2019-07-10.
+//  Copyright © 2019 Group 9. All rights reserved.
 //
 
 #include "Entity.hpp"
-#define DEF_X_POS 1;
-#define DEF_Y_POS 1;
+#include <math.h>
 
-int Entity::nextID = 0;
+#define DEF_X_POS 1.0f;
+#define DEF_Y_POS 1.0f;
 
-Entity::Entity(){
-  _id = ++nextID;
-  _position = new int[2];
+Entity::Entity() {
+  _position = new float[2];
   _position[0] = DEF_X_POS;
   _position[1] = DEF_Y_POS;
 }
 
-Entity::Entity(int xPosition, int yPosition)
-{
-  _position = new int[2];
+Entity::Entity(float xPosition, float yPosition) {
+  _position = new float[2];
   _position[0] = xPosition;
   _position[1] = yPosition;
 }
 
-Entity::~Entity(){
+Entity::~Entity() {
   delete[] _position;
 }
 
-int* Entity::getPos(){
+float* Entity::getPos() {
   return _position;
 }
 
-int Entity::getID(){
-  return _id;
-}
-
-int Entity::getColor(){
+int Entity::getColor() {
   return _color;
 }
 
-int Entity::getVel(){
+int Entity::getVel() {
   return _velocity;
 }
 
-void Entity::setPos(int x, int y){
+void Entity::setPos(float x, float y) {
   _position[0] = x;
   _position[1] = y;
 }
 
-int Entity::getPosX()
-{
-  return _position[0];
+int Entity::getPosX() {
+  return (int)floor(_position[0]);
 }
 
-int Entity::getPosY()
-{
-  return _position[1];
+int Entity::getPosY() {
+  return (int)floor(_position[1]);
+}
+
+void Entity::destroy() {
+  _destroyed = true;
+}
+
+bool Entity::isDestroyed() {
+  return _destroyed;
 }
 
 char Entity::getRepresentation() {
   return _representation;
 }
 
-void Entity::update(){
+void Entity::update() {}
 
-}
+void Entity::detectCollision(Entity& object) {}
