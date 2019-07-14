@@ -19,7 +19,7 @@ The player can move left and right with the respective arrow key, as well as sho
 Aliens are represented as an ‘A’ character and move downwards from the top of the window.
 When the game is over, it can be quit with ‘ctrl+c’.
 ## Contribution
-- Branden Rice Diagrams, board, and game engine development 
-- Carter McCullum Board, game engine, and model development
-- Mackenzie Boudreau Board and game engine development
-- Ian Page Diagrams, model, and collision development
+- Branden Rice: Diagrams, board, and game engine development 
+- Carter McCullum: Board, game engine, and model development
+- Mackenzie Boudreau: Board and game engine development
+- Ian Page: Diagrams, model, and collision development
