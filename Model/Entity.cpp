@@ -65,6 +65,4 @@ char Entity::getRepresentation() {
   return _representation;
 }
 
-void Entity::update() {}
-
 void Entity::detectCollision(Entity& object) {}

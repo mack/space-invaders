@@ -16,6 +16,8 @@
 #include "Alien.hpp"
 #include "Constants.hpp"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
 int main() {
     Board* board = new Board(100, 40);
 
@@ -35,24 +37,35 @@ int main() {
       // Check if game is over
       if (player->getLives() <= 0) {
         board->writeMessage("Game Over.");
-      } else if (board->getObjects(ALIEN_REP).size() == 0) {
-        board->writeMessage("You win!!");
+      } else {
+          auto aliens = board->getObjects(ALIEN_REP);
+          for (auto& alien : aliens) {
+              if (alien->getPosY() > player->getPosY()) {
+                  player->loseLife();
+              }
+          }
       }
 
       board->update();
       // Check for user input
       int c = board->getInput();
       switch(c) {
-            case RIGHT_KEY:
-                player->moveRight();
-                break;
-            case LEFT_KEY:
-                player->moveLeft();
-                break;
-            case UP_KEY:
-                Projectile* p = new Projectile(true, player->getPosX(), player->getPosY() - 1);
+            case RIGHT_KEY: {
+                if (player->getPosX() < board->getWidth())
+                    player->moveRight();
+            } break;
+            case LEFT_KEY: {
+                if (player->getPosX() > 0)
+                    player->moveLeft();
+            } break;
+            case UP_KEY: {
+                Projectile *p = new Projectile(true, player->getPosX(), player->getPosY() - 1);
                 board->addObject(p);
-                break;
+            } break;
+          default:
+              ;
         }
     }
 }
+
+#pragma clang diagnostic pop

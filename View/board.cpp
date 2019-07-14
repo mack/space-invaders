@@ -40,6 +40,9 @@ Board::Board(int width, int height): _width(width), _height(height), _message(""
 }
 
 Board::~Board() {
+    for (auto& entity: gameObjects) {
+        delete entity;
+    }
     endwin();
 }
 
