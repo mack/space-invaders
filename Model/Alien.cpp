@@ -29,6 +29,16 @@ Alien::Alien(int xPosition, int yPosition)
   _health = DEF_HEALTH;
   _representation = ALIEN_REP;
   _color = COLOR_GREEN;
+  _velocity = 1;
+}
+
+Alien::Alien(int xPosition, int yPosition, int velocity)
+: Entity(xPosition, yPosition){
+  _value = DEF_VALUE;
+  _health = DEF_HEALTH;
+  _representation = ALIEN_REP;
+  _color = COLOR_GREEN;
+  _velocity = velocity;
 }
 
 Alien::~Alien() {}
@@ -52,7 +62,7 @@ void Alien::update() {
   } else if (_health <= 66) {
     _color = COLOR_MAGENTA;
   }
-  setPos(_position[0], _position[1] + 0.05);
+  setPos(_position[0], _position[1] + 0.05 + 0.02 * _velocity);
 }
 
 void Alien::detectCollision(Entity& object) {
