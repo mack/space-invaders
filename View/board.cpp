@@ -10,6 +10,7 @@
 #include <math.h>
 #include <string>
 
+#include <fstream>
 #include "Board.hpp"
 #include <Alien.hpp>
 #include <Constants.hpp>
@@ -70,9 +71,10 @@ void Board::update() {
         }
 
         // Delete object if needed
-        if (obj->isDestroyed() || obj->getPosX() > _width || obj->getPosY() > _height || obj->getPosY() < 0 || obj->getPosX() < 0) {
-            gameObjects.erase(gameObjects.begin() + i);
-            break;
+        if (obj->isDestroyed() ) {
+
+            gameObjects.erase(gameObjects.begin() + i);  
+            
         }
 
         // Print game object with color
@@ -83,7 +85,7 @@ void Board::update() {
         obj->update();
 
         // Print the Score
-        std::string scoreMessage = " Score: " + std::to_string(score) + " ";
+        std::string scoreMessage = " Score: " + std::to_string(obj->isDestroyed())   + " ";
         mvwprintw(window, 0, 2, scoreMessage.c_str());
 
         // Write the game message if any
