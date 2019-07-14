@@ -63,7 +63,7 @@ void Alien::update() {
   } else if (_health <= 66) {
     _color = COLOR_MAGENTA;
   }
-  setPos(_position[0], _position[1] + 0.05 + 0.02 * _velocity);
+  setPos(_position[0] - 0.05 - 0.05* _velocity, _position[1] );
 }
 
 void Alien::detectCollision(Entity& object) {
