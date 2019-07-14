@@ -40,7 +40,14 @@ int main() {
       if (player->getLives() <= 0) {
         board->writeMessage("Game Over.");
       } else if (board->getObjects(ALIEN_REP).size() == 0) {
-        board->writeMessage("You win!!");
+        //board->writeMessage("You win!!");
+        for (int i = 0; i < numRows; i++) {
+      for (int j = 0; j < numCols; j++) {
+        Alien* alien = new Alien(midSpace - (numCols/2) + j, i+1);
+       // board->addObject(alien);
+        board->addObject(new Alien(midSpace - (numCols/2) + j, i+1));
+      }
+    }
       }
 
       board->update();
