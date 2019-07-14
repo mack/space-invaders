@@ -17,17 +17,21 @@
 #include "Constants.hpp"
 
 int main() {
-    Board* board = new Board(100, 40);
+    Board* board = new Board(50, 40);
 
     // Create a player and add it to the board
     Player* player = new Player(floor(board->getWidth() / 2), board->getHeight() - 1);
     board->addObject(player);
 
     // Create aliens and add to board
-    for (int i = 0; i < 2; i++) {
-      for (int j = 0; j < 2; j++) {
-        Alien* alien = new Alien(j+21, i+1);
-        board->addObject(alien);
+    int midSpace = floor(board->getWidth() / 2);
+    int numRows = 2;
+    int numCols = 4;
+    for (int i = 0; i < numRows; i++) {
+      for (int j = 0; j < numCols; j++) {
+        Alien* alien = new Alien(midSpace - (numCols/2) + j, i+1);
+       // board->addObject(alien);
+        board->addObject(new Alien(midSpace - (numCols/2) + j, i+1));
       }
     }
 
