@@ -2,3 +2,4 @@ bin
 compile.sh
 .vscode
 main
+cmake-build-debug
