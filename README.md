@@ -18,3 +18,4 @@ The player entity that you control is represented as an ‘0’ character, that 
 The player can move left and right with the respective arrow key, as well as shoot using the up arrow key.
 Aliens are represented as an ‘A’ character and move downwards from the top of the window.
 When the game is over, it can be quit with ‘ctrl+c’.
+## Contribution
