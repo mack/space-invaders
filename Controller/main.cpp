@@ -76,7 +76,6 @@ int main() {
                 board->addObject(new Projectile(true, player->getPosX(), player->getPosY() - 1));
                 //board->addObject(p);
                 break;
-            default:
         }
     }
 }
