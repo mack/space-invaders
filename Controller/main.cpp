@@ -80,10 +80,14 @@ int main() {
       int c = board->getInput();
       switch(c) {
             case RIGHT_KEY:
-              player->moveRight();
+              if(player->getPosX() + 1 != board->getWidth()){
+                player->moveRight();
+              }
               break;
             case LEFT_KEY:
-              player->moveLeft();
+              if(player->getPosX() > 1){
+                player->moveLeft();
+              }
               break;
             case UP_KEY:
               Projectile* p = new Projectile(true, player->getPosX(), player->getPosY() - 1);
