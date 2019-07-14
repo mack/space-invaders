@@ -33,7 +33,6 @@ int main() {
       for (int j = 0; j < numCols; j++) {
         //don't know why we have to add this pointer to generate correct # of aliens but it breaks otherwise
         Alien* alien = new Alien(midSpace - (numCols/2) + j, i+1);
-       // board->addObject(alien);
         board->addObject(new Alien(midSpace - (numCols/2) + j, i+1));
       }
     }
@@ -43,15 +42,13 @@ int main() {
       if (player->getLives() <= 0) {
         board->writeMessage("Game Over.");
       } else if (board->getObjects(ALIEN_REP).size() == 0) {
-        //board->writeMessage("You win!!");
         round++;
         for (int i = 0; i < numRows; i++) {
           for (int j = 0; j < numCols; j++) {
             Alien* alien = new Alien(midSpace - (numCols/2) + j, i+1, round);
-       // board->addObject(alien);
             board->addObject(new Alien(midSpace - (numCols/2) + j, i+1, round));
-      }
-    }
+          }
+        }
       } else {
           auto aliens = board->getObjects(ALIEN_REP);
           for (auto& alien : aliens) {
@@ -66,16 +63,16 @@ int main() {
       int c = board->getInput();
       switch(c) {
             case RIGHT_KEY:
-                player->moveRight();
-                break;
+              player->moveRight();
+              break;
             case LEFT_KEY:
-                player->moveLeft();
-                break;
+              player->moveLeft();
+              break;
             case UP_KEY:
-                Projectile* p = new Projectile(true, player->getPosX(), player->getPosY() - 1);
-                board->addObject(new Projectile(true, player->getPosX(), player->getPosY() - 1));
-                //board->addObject(p);
-                break;
+              Projectile* p = new Projectile(true, player->getPosX(), player->getPosY() - 1);
+              board->addObject(new Projectile(true, player->getPosX(), player->getPosY() - 1));
+              //board->addObject(p);
+              break;
         }
     }
 }
