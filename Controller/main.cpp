@@ -50,6 +50,7 @@ int main() {
           }
         }
       } else {
+          // Player loses life when aliens hit bottom
           auto aliens = board->getObjects(ALIEN_REP);
           for (auto& alien : aliens) {
               if (alien->getPosY() > player->getPosY()) {
@@ -71,7 +72,6 @@ int main() {
             case UP_KEY:
               Projectile* p = new Projectile(true, player->getPosX(), player->getPosY() - 1);
               board->addObject(new Projectile(true, player->getPosX(), player->getPosY() - 1));
-              //board->addObject(p);
               break;
         }
     }
