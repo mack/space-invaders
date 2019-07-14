@@ -1,3 +1,4 @@
+
 //
 //  main.cpp
 //  Space Invaders
@@ -51,6 +52,13 @@ int main() {
             board->addObject(new Alien(midSpace - (numCols/2) + j, i+1, round));
       }
     }
+      } else {
+          auto aliens = board->getObjects(ALIEN_REP);
+          for (auto& alien : aliens) {
+              if (alien->getPosY() > player->getPosY()) {
+                  player->loseLife();
+              }
+          }
       }
 
       board->update();
@@ -68,6 +76,8 @@ int main() {
                 board->addObject(new Projectile(true, player->getPosX(), player->getPosY() - 1));
                 //board->addObject(p);
                 break;
+            default:
         }
     }
 }
+

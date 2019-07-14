@@ -1,3 +1,4 @@
+
 //
 //  Alien.cpp
 //  Space Invaders
@@ -74,3 +75,6 @@ void Alien::detectCollision(Entity& object) {
     object.destroy();
   }
 }
+
+
+

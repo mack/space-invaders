@@ -1,4 +1,4 @@
-//
+
 //  Alien.hpp
 //  Space Invaders
 //
@@ -30,3 +30,4 @@ public:
   void detectCollision(Entity& object) override;
 };
 #endif
+
