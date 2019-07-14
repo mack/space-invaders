@@ -25,6 +25,9 @@ private:
     std::vector<Entity*> gameObjects;
 
 public:
+    static int score;
+
+public:
     Board();
     Board(int width, int height);
     ~Board();

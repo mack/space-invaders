@@ -9,6 +9,7 @@
 #include<algorithm>
 #include <curses.h>
 
+#include "Board.hpp"
 #include "Alien.hpp"
 #include <Constants.hpp>
 
@@ -57,6 +58,7 @@ void Alien::update() {
 void Alien::detectCollision(Entity& object) {
   if (object.getRepresentation() == PROJECTILE_REP) {
     if (takeDamage(34) == 0) {
+      Board::score++;
       destroy();
     }
     object.destroy();

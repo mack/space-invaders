@@ -8,10 +8,14 @@
 
 #include <unistd.h>
 #include <math.h>
+#include <string>
 
 #include "Board.hpp"
 #include <Alien.hpp>
 #include <Constants.hpp>
+
+// Initialize board score
+int Board::score = 0;
 
 // MARK: - Constructors & Deconstructors
 Board::Board(): Board(DEFAULT_BOARD_WIDTH, DEFAULT_BOARD_HEIGHT) {}
@@ -77,6 +81,10 @@ void Board::update() {
         wattroff(window, COLOR_PAIR(1));
         // Call game objects update function
         obj->update();
+
+        // Print the Score
+        std::string scoreMessage = " Score: " + std::to_string(score) + " ";
+        mvwprintw(window, 0, 2, scoreMessage.c_str());
 
         // Write the game message if any
         if (strlen(_message) > 0) {
