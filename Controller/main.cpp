@@ -70,8 +70,7 @@ int main() {
               player->moveLeft();
               break;
             case UP_KEY:
-              Projectile* p = new Projectile(true, player->getPosX(), player->getPosY() - 1);
-              board->addObject(p);
+              board->addObject(new Projectile(true, player->getPosX(), player->getPosY() - 1));
               break;
         }
     }
