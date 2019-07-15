@@ -17,6 +17,8 @@ class Alien : public Entity {
 private:
   int _value;
   int _health;
+  int _moveState;
+  int _moveStateDownToggle;
 
 public:
   Alien();
