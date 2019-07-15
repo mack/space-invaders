@@ -18,7 +18,7 @@
 #include "Constants.hpp"
 
 int main() {
-    Board* board = new Board(50, 40);
+    Board* board = new Board();
     int round = 0;
 
     // Create a player and add it to the board
@@ -70,7 +70,6 @@ int main() {
               player->moveLeft();
               break;
             case UP_KEY:
-              Projectile* p = new Projectile(true, player->getPosX(), player->getPosY() - 1);
               board->addObject(new Projectile(true, player->getPosX(), player->getPosY() - 1));
               break;
         }

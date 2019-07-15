@@ -28,7 +28,6 @@ public:
     static int score;
 
     Board();
-    Board(int width, int height);
     ~Board();
     int getHeight();
     int getWidth();

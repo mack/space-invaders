@@ -18,9 +18,7 @@
 int Board::score = 0;
 
 // MARK: - Constructors & Deconstructors
-Board::Board(): Board(DEFAULT_BOARD_WIDTH, DEFAULT_BOARD_HEIGHT) {}
-
-Board::Board(int width, int height): _width(width), _height(height), _message("") {
+Board::Board(): _width(DEFAULT_BOARD_WIDTH), _height(DEFAULT_BOARD_HEIGHT), _message("") {
     // Initial NCurses setup
     initscr();
     start_color();
@@ -36,7 +34,7 @@ Board::Board(int width, int height): _width(width), _height(height), _message(""
     cbreak();
     curs_set(0); // Hide blinking cursor
     keypad(stdscr, TRUE); // Accept arrow keys as input
-    window = newwin(height, width, 1, 1); // Initialize new ncurses window
+    window = newwin(_height, _width, 1, 1); // Initialize new ncurses window
 }
 
 Board::~Board() {

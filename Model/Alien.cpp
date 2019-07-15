@@ -22,6 +22,8 @@ Alien::Alien() {
   _health = DEF_HEALTH;
   _representation = ALIEN_REP;
   _color = COLOR_GREEN;
+  _moveState = 1;
+  _moveStateDownToggle = -1;
 }
 
 Alien::Alien(int xPosition, int yPosition)
@@ -31,6 +33,8 @@ Alien::Alien(int xPosition, int yPosition)
   _representation = ALIEN_REP;
   _color = COLOR_GREEN;
   _velocity = 1;
+  _moveState = 1;
+  _moveStateDownToggle = -1;
 }
 
 Alien::Alien(int xPosition, int yPosition, int velocity)
@@ -40,6 +44,8 @@ Alien::Alien(int xPosition, int yPosition, int velocity)
   _representation = ALIEN_REP;
   _color = COLOR_GREEN;
   _velocity = velocity;
+  _moveState = 1;
+  _moveStateDownToggle = -1;
 }
 
 Alien::~Alien() {}
@@ -63,7 +69,35 @@ void Alien::update() {
   } else if (_health <= 66) {
     _color = COLOR_MAGENTA;
   }
-  setPos(_position[0], _position[1] + 0.05 + 0.02 * _velocity);
+
+  if (getPosY() == _moveStateDownToggle && getPosX() == 1) {
+    _moveState = 2;
+    _moveStateDownToggle = -1;
+  } else if (getPosY() == _moveStateDownToggle && getPosX() == 49) {
+    _moveState = 1;
+    _moveStateDownToggle = -1;
+  } else if (getPosX() == 1) {
+    _moveState = 3;
+    _moveStateDownToggle = getPosY() + 1;
+  } else if (getPosX() == 49) {
+    _moveState = 3;
+    _moveStateDownToggle = getPosY() + 1;
+  }
+
+  switch (_moveState) {
+    case 1:
+      // move left
+      setPos(_position[0] - (0.05 + 0.02 * _velocity), _position[1]);
+      break;
+    case 2:
+      // move right
+      setPos(_position[0] + (0.05 + 0.02 * _velocity), _position[1]);
+      break;
+    case 3:
+      // move down
+      setPos(_position[0], _position[1] + 0.05 + 0.02 * _velocity);
+      break;
+  }
 }
 
 void Alien::detectCollision(Entity& object) {
