@@ -73,13 +73,13 @@ void Alien::update() {
   if (getPosY() == _moveStateDownToggle && getPosX() == 1) {
     _moveState = 2;
     _moveStateDownToggle = -1;
-  } else if (getPosY() == _moveStateDownToggle && getPosX() == 49) {
+  } else if (getPosY() == _moveStateDownToggle && getPosX() == 29) {
     _moveState = 1;
     _moveStateDownToggle = -1;
   } else if (getPosX() == 1) {
     _moveState = 3;
     _moveStateDownToggle = getPosY() + 1;
-  } else if (getPosX() == 49) {
+  } else if (getPosX() == 29) {
     _moveState = 3;
     _moveStateDownToggle = getPosY() + 1;
   }
