@@ -18,7 +18,7 @@
 #include "Constants.hpp"
 
 int main() {
-    Board* board = new Board(50, 40);
+    Board* board = new Board();
     int round = 0;
 
     // Create a player and add it to the board
