@@ -1,5 +1,7 @@
 bin
 compile.sh
 .vscode
+.idea
+cmake-build-debug
 main
 cmake-build-debug

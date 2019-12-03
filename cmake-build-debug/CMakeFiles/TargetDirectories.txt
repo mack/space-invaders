@@ -1,3 +1,0 @@
-D:/Documents/csci3132/space-invadors/cmake-build-debug/CMakeFiles/space_invadors.dir
-D:/Documents/csci3132/space-invadors/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Documents/csci3132/space-invadors/cmake-build-debug/CMakeFiles/rebuild_cache.dir
