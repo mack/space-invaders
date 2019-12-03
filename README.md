@@ -2,7 +2,7 @@
   <img width="460" src="Demo/showcase.gif">
 </p>
 
-# Terminal Based Space Invaders
+# 🚀 Space Invaders
 ## Description
   The game is terminal based version of space invaders. 
   The goal of the game is to shoot as many aliens as possible before you lose all of your lives.
